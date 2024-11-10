@@ -60,7 +60,7 @@ class ProductController extends Controller
 
 public function sellProduct(Request $request, Product $product)
 {
-    if ($product->user_id !== auth()->id()) {
+    if ($product->user_id !== auth()->user()->id) {
         return response()->json('Unauthorized', 403);
     }
 
