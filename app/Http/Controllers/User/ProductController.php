@@ -76,4 +76,40 @@ public function sellProduct(Request $request, Product $product)
 
     return response()->json('product sold successfully', 200);
 }
+public function sellMultipleProducts(Request $request)
+{
+    // Validate that the request contains an array of products with 'id' and 'quantity'
+    $validatedData = $request->validate([
+        'products' => 'required|array',
+        'products.*.id' => 'required|exists:products,id',
+        'products.*.quantity' => 'required|integer|min:1',
+    ]);
+
+    // Retrieve the list of products with their quantities
+    $products = $validatedData['products'];
+    $userId = auth()->id();
+
+    // Loop through each product to check availability and deduct quantity
+    foreach ($products as $item) {
+        $product = Product::where('id', $item['id'])->where('user_id', $userId)->first();
+
+        // Check if the product exists and belongs to the authenticated user
+        if (!$product) {
+            return response()->json(['error' => "Product with ID {$item['id']} not found or unauthorized."], 404);
+        }
+
+        // Check if there's enough quantity
+        if ($item['quantity'] > $product->quantity) {
+            return response()->json(['error' => "Not enough quantity in stock for product with ID {$item['id']}"], 400);
+        }
+
+        // Deduct the quantity
+        $product->update([
+            'quantity' => $product->quantity - $item['quantity']
+        ]);
+    }
+
+    return response()->json('Products sold successfully', 200);
+}
+
 }

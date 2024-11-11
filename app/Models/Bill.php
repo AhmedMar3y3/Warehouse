@@ -8,4 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class Bill extends Model
 {
     use HasFactory;
+    protected $fillable = ['customer_name', 'customer_phone', 'total_price'];
+
+    public function products()
+    {
+        return $this->belongsToMany(Product::class)->withPivot('quantity');
+    }
 }

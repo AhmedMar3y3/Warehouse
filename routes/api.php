@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\User\AuthController;
+use App\Http\Controllers\User\BillController;
 use App\Http\Controllers\User\ProductController;
 
 //////////////////////////  User Public Routes  //////////////////////////
@@ -20,5 +20,8 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::post('/store-product', [ProductController::class, 'storeNewProduct']);
     Route::post('/update-product/{product}', [ProductController::class, 'updateProduct']);
     Route::delete('/delete-product/{product}', [ProductController::class, 'deleteProduct']);
-    Route::post('/sell-products/{product}', [ProductController::class, 'sellProduct']);   
+    Route::post('/sell-products/{product}', [ProductController::class, 'sellProduct']); 
+    Route::post('/sell-multiple-products', [ProductController::class, 'sellMultipleProducts']);
+    Route::post('/create-bill', [BillController::class, 'createBill']);
+  
 });

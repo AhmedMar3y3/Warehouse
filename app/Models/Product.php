@@ -8,9 +8,12 @@ use App\Models\User;
 class Product extends Model
 {
     use HasFactory;
-    protected $fillable=['name','price','quantity','description','user_id'];
+    protected $fillable = ['name', 'price', 'quantity', 'description', 'user_id'];
 
-    public function user(){
+    public function bills()
+    {
+        return $this->belongsToMany(Bill::class)->withPivot('quantity');
+    }    public function user(){
         return $this->belongsTo(User::class);
     }
 }
