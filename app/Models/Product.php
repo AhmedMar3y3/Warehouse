@@ -8,7 +8,7 @@ use App\Models\User;
 class Product extends Model
 {
     use HasFactory;
-    protected $fillable = ['name', 'price', 'quantity', 'description', 'user_id'];
+    protected $fillable = ['name', 'price', 'quantity', 'description', 'user_id', 'category_id'];
 
     public function bills()
     {
