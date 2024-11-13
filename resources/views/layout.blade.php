@@ -41,8 +41,8 @@
   <!-- ======= Header ======= -->
   <header id="header" class="header fixed-top d-flex align-items-center">
     <div class="d-flex align-items-center justify-content-between">
-      <a href="{{ route('admin.dashboard') }}" class="logo d-flex align-items-center">
-        <span class="d-none d-lg-block">Mandoby</span>
+      <a href="{{ route('dashboard') }}" class="logo d-flex align-items-center">
+        <span class="d-none d-lg-block">Warehouse</span>
       </a>
       <i class="bi bi-list toggle-sidebar-btn"></i>
     </div><!-- End Logo -->
@@ -65,7 +65,7 @@
             </li>
 
             <li>
-              <form method="POST" action="{{ route('logout') }}">
+              <form method="POST" action="{{ route('auth.logout') }}">
                 @csrf
                 <button type="submit" class="dropdown-item d-flex align-items-center">
                   <i class="bi bi-box-arrow-right"></i>
@@ -80,36 +80,47 @@
     </nav>
   </header>
 
-  <!-- ======= Sidebar ======= -->
-  <aside id="sidebar" class="sidebar">
+ <!-- ======= Sidebar ======= -->
+ <aside id="sidebar" class="sidebar">
 
-    <ul class="sidebar-nav" id="sidebar-nav">
+  <ul class="sidebar-nav" id="sidebar-nav">
 
-      <li class="nav-item">
-        <a class="nav-link {{ request()->routeIs('admin.dashboard') ? 'active' : '' }}" href="{{ route('admin.dashboard') }}">
-          <i class="bi bi-grid"></i>
-          <span>Home Page</span>
-        </a>
-      </li>
-      <!-- End Dashboard Nav -->
-      <li class="nav-heading">Pages</li>
+    <li class="nav-item">
+      <a class="nav-link {{ request()->routeIs('dashboard') ? 'active' : '' }}" href="{{ route('dashboard') }}">
+        <i class="bi bi-grid"></i>
+        <span>Home Page</span>
+      </a>
+    </li>
+    <!-- End Dashboard Nav -->
+    <li class="nav-heading">Pages</li>
 
-      <li class="nav-item">
-        <a class="nav-link {{ request()->routeIs('admin.doctorss.index') ? 'active' : '' }}" href="{{ route('admin.doctors.index') }}">
-          <i class="bi bi-heart-pulse"></i>
-          <span>Doctors</span>
-        </a>
-      </li>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link {{ request()->routeIs('admin.reports.index') ? 'active' : '' }}" href="{{ route('admin.reports.index') }}">
-            <i class="bi bi-file-earmark-text"></i>
-          <span>Reports</span>
-        </a>
-      </li>
-    </ul>
+    <li class="nav-item">
+      <a class="nav-link {{ request()->routeIs('categories.index') ? 'active' : '' }}" href="{{ route('categories.index') }}">
+        <i class="bi bi-tags"></i>
+        <span>Categories</span>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link {{ request()->routeIs('products.index') ? 'active' : '' }}" href="{{ route('products.index') }}">
+        <i class="bi bi-box-seam"></i>
+        <span>Products</span>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link {{ request()->routeIs('bills.index') ? 'active' : '' }}" href="{{ route('bills.index') }}">
+        <i class="bi bi-receipt"></i>
+        <span>Bills</span>
+      </a>
+    </li>
+    {{-- <li class="nav-item">
+      <a class="nav-link {{ request()->routeIs('dashboard') ? 'active' : '' }}" href="{{ route('dashboard') }}">
+        <i class="bi bi-person-badge"></i>
+        <span>Representatives</span>
+      </a>
+    </li> --}}
+  </ul>
 
-  </aside><!-- End Sidebar-->
+</aside><!-- End Sidebar-->
 
   <main id="main" class="main">
     @yield('main')

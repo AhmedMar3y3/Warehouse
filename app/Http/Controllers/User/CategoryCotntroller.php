@@ -12,13 +12,17 @@ class CategoryCotntroller extends Controller
 public function index()
 {
     $categories = DB::table('categories')->get();
-    return view('categories.index', compact('categories'));
+    return response()->json($categories);
 }
 
 public function show($id)
 {
     $category = DB::table('categories')->find($id);
-    return view('categories.show', compact('category'));
+    if ($category) {
+        return response()->json($category);
+    } else {
+        return response()->json(['error' => 'Category not found'], 404);
+    }
 }
 
 public function store(Request $request)
@@ -27,17 +31,21 @@ public function store(Request $request)
         'name' => 'required|string|max:255',
     ]);
 
-    DB::table('categories')->insert([
+    $id = DB::table('categories')->insertGetId([
         'name' => $request->name,
     ]);
 
-    return redirect()->route('categories.index')->with('success', 'Category created successfully.');
+    return response()->json(['success' => 'Category created successfully.', 'id' => $id], 201);
 }
 
 public function destroy($id)
 {
-    DB::table('categories')->delete($id);
-    return redirect()->route('categories.index')->with('success', 'Category deleted successfully.');
+    $deleted = DB::table('categories')->where('id', $id)->delete();
+    if ($deleted) {
+        return response()->json(['success' => 'Category deleted successfully.']);
+    } else {
+        return response()->json(['error' => 'Category not found'], 404);
+    }
 }
 
 public function update(Request $request, $id)
@@ -46,10 +54,14 @@ public function update(Request $request, $id)
         'name' => 'required|string|max:255',
     ]);
 
-    DB::table('categories')->where('id', $id)->update([
+    $updated = DB::table('categories')->where('id', $id)->update([
         'name' => $request->name,
     ]);
 
-    return response()->json(['success' => 'Category updated successfully.']);
+    if ($updated) {
+        return response()->json(['success' => 'Category updated successfully.']);
+    } else {
+        return response()->json(['error' => 'Category not found'], 404);
+    }
 }
 }

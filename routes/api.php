@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\User\AuthController;
 use App\Http\Controllers\User\BillController;
 use App\Http\Controllers\User\ProductController;
+use App\Http\Controllers\User\CategoryCotntroller;
 
 //////////////////////////  User Public Routes  //////////////////////////
 Route::post('/register', [AuthController::class, 'register']);
@@ -23,5 +24,10 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::post('/sell-products/{product}', [ProductController::class, 'sellProduct']); 
     Route::post('/sell-multiple-products', [ProductController::class, 'sellMultipleProducts']);
     Route::post('/create-bill', [BillController::class, 'createBill']);
+    Route::get('/categories', [CategoryCotntroller::class, 'index']);
+    Route::get('/categories/{category}', [CategoryCotntroller::class, 'show']);
+    Route::post('/store-category', [CategoryCotntroller::class, 'store']);
+    Route::delete('/delete-category/{category}', [CategoryCotntroller::class, 'destroy']);
+    
   
 });
