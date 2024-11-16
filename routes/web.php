@@ -34,17 +34,25 @@ Route::post('/reset-password', [AuthController::class, 'resetPassword'])->name('
 
 //////////////////////////  User Private Routes  //////////////////////////
 Route::group(['middleware' => ['web', 'dashboard.auth']], function () {
+    // Home
     Route::post('/logout', [AuthController::class, 'logout'])->name('auth.logout');
     Route::get('/dashboard', [HomeController::class, 'loadDashboard'])->name('dashboard');
+
+    // Products
     Route::get('/products', [ProductController::class, 'index'])->name('products.index');
-    Route::get('/products/{product}', [ProductController::class, 'showProduct']);
-    Route::post('/store-product', [ProductController::class, 'storeNewProduct']);
-    Route::post('/update-product/{product}', [ProductController::class, 'updateProduct']);
-    Route::delete('/delete-product/{product}', [ProductController::class, 'deleteProduct']);
-    Route::post('/sell-products/{product}', [ProductController::class, 'sellProduct']); 
-    Route::post('/sell-multiple-products', [ProductController::class, 'sellMultipleProducts']);
+    Route::get('/products/{product}', [ProductController::class, 'showProduct'])->name('products.show');
+    Route::get('/create-product', [ProductController::class, 'create'])->name('products.create');
+    Route::post('/store-product', [ProductController::class, 'storeNewProduct'])->name('products.store');
+    Route::get('/edit-product/{product}', [ProductController::class, 'edit'])->name('products.edit');
+    Route::put('/update-product/{product}', [ProductController::class, 'updateProduct'])->name('products.update');
+    Route::delete('/delete-product/{product}', [ProductController::class, 'deleteProduct'])->name('products.destroy');
+
+    // Bills
     Route::get('/bills', [BillController::class, 'index'])->name('bills.index');
-    Route::post('/create-bill', [BillController::class, 'createBill']);
+    Route::get('/create-bill', [BillController::class, 'create'])->name('bills.create');
+    Route::post('/create-bill', [BillController::class, 'store'])->name('bills.store');
+    Route::post('/destroy/{bill}', [BillController::class, 'destroy'])->name('bills.destroy');
+    Route::get('/view/{bill}', [BillController::class, 'show'])->name('bills.show');
 
     // Categories
     Route::get('/categories', [CategoryCotntroller::class, 'index'])->name('categories.index');
@@ -54,3 +62,6 @@ Route::group(['middleware' => ['web', 'dashboard.auth']], function () {
     Route::delete('/delete-category/{category}', [CategoryCotntroller::class, 'destroy'])->name('categories.destroy');
 });
 
+// Route::get('/test', function () {
+//     return view('bills.create');
+// });
