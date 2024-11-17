@@ -106,9 +106,9 @@
                 </div>
               </div>
 
-              <div class="credits">
+              {{-- <div class="credits">
                 Designed by <a href="https://www.facebook.com/profile.php?id=100008229483826&mibextid=ZbWKwL">Mar3y</a>
-              </div>
+              </div> --}}
 
             </div>
           </div>

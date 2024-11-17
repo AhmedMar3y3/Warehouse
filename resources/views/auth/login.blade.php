@@ -94,9 +94,9 @@
               </div>
               <p class="small mt-3">Forgot password? <a href="{{ route('auth.forgot-password') }}">Reset here</a></p>
 
-              <div class="credits">
+              {{-- <div class="credits">
                 Designed by <a href="https://www.facebook.com/profile.php?id=100008229483826&mibextid=ZbWKwL">Mar3y</a>
-              </div>
+              </div> --}}
             </div>
           </div>
         </div>
