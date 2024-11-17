@@ -8,15 +8,18 @@ return new class extends Migration
 {
     /**
      * Run the migrations.
-     */
-    public function up(): void
-    {
-        Schema::create('bills', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
-        });
-    }
-
+     */public function up(): void
+{
+    Schema::create('bills', function (Blueprint $table) {
+        $table->id();
+        $table->string('name');
+        $table->integer('phoneNumber');
+        $table->unsignedBigInteger('product_id'); // تعريف العمود
+        $table->foreign('product_id')->references('id')->on('products')->onDelete('set null'); // تعريف المفتاح الخارجي
+        $table->timestamps();
+    });
+}
+    
     /**
      * Reverse the migrations.
      */
