@@ -2,9 +2,9 @@
 
 @section('main')
     <div class="container">
-        <h2>Add Category</h2>
+        <h2>إضافة فئة</h2>
 
-        <!-- Success Message -->
+        <!-- رسالة النجاح -->
         @if(session('success'))
             <div class="alert alert-success">
                 {{ session('success') }}
@@ -14,11 +14,11 @@
         <form action="{{ route('categories.store') }}" method="POST">
             @csrf
             <div class="form-group">
-                <label for="name">Category Name</label>
+                <label for="name">اسم الفئة</label>
                 <input type="text" class="form-control" id="name" name="name" required>
             </div>
 
-            <button type="submit" class="btn btn-primary">Add Category</button>
+            <button type="submit" class="btn btn-primary">إضافة الفئة</button>
         </form>
     </div>
 @endsection

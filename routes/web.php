@@ -51,7 +51,7 @@ Route::group(['middleware' => ['web', 'dashboard.auth']], function () {
     Route::get('/bills', [BillController::class, 'index'])->name('bills.index');
     Route::get('/create-bill', [BillController::class, 'create'])->name('bills.create');
     Route::post('/create-bill', [BillController::class, 'store'])->name('bills.store');
-    Route::post('/destroy/{bill}', [BillController::class, 'destroy'])->name('bills.destroy');
+    Route::delete('/destroy/{bill}', [BillController::class, 'destroy'])->name('bills.destroy');
     Route::get('/view/{bill}', [BillController::class, 'show'])->name('bills.show');
 
     // Categories

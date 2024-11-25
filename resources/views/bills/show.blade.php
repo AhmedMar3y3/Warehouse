@@ -2,24 +2,24 @@
 
 @section('main')
 <div class="container">
-    <h1>Bill Details</h1>
+    <h1>تفاصيل الفاتورة</h1>
     <div class="mb-3">
-        <strong>Customer Name:</strong> {{ $bill->customer_name }}
+        <strong>اسم العميل:</strong> {{ $bill->customer_name }}
     </div>
     <div class="mb-3">
-        <strong>Customer Phone:</strong> {{ $bill->customer_phone }}
+        <strong>هاتف العميل:</strong> {{ $bill->customer_phone }}
     </div>
     <div class="mb-3">
-        <strong>Total Price:</strong> ${{ $bill->total_price }}
+        <strong>السعر الإجمالي:</strong> ${{ $bill->total_price }}
     </div>
-    <h3>Products</h3>
+    <h3>المنتجات</h3>
     <table class="table table-bordered">
         <thead>
             <tr>
-                <th>Name</th>
-                <th>Price</th>
-                <th>Quantity</th>
-                <th>Total</th>
+                <th>الاسم</th>
+                <th>السعر</th>
+                <th>الكمية</th>
+                <th>الإجمالي</th>
             </tr>
         </thead>
         <tbody>

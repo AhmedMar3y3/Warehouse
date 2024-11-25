@@ -464,12 +464,13 @@ h6 {
 .header-nav>ul {
   margin: 0;
   padding: 0;
+  display: flex;
 }
 
 .header-nav .nav-icon {
   font-size: 22px;
   color: #012970;
-  margin-right: 25px;
+  margin-left: 50px;
   position: relative;
 }
 
@@ -484,6 +485,14 @@ h6 {
 .header-nav .nav-profile span {
   font-size: 14px;
   font-weight: 600;
+
+}
+
+.header-nav {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin-right: 1050px;
 }
 
 .header-nav .badge-number {
@@ -493,6 +502,7 @@ h6 {
   font-size: 12px;
   padding: 3px 6px;
 }
+
 
 .header-nav .notifications {
   inset: 8px -15px auto auto !important;
@@ -562,10 +572,11 @@ h6 {
 }
 
 .header-nav .profile {
-  min-width: 240px;
-  padding-bottom: 0;
   top: 8px !important;
+  left: 0;
+  right: auto;
 }
+
 
 .header-nav .profile .dropdown-header h6 {
   font-size: 18px;
@@ -600,24 +611,39 @@ h6 {
 .sidebar {
   position: fixed;
   top: 60px;
-  left: 0;
-  bottom: 0;
+  right: 0; /* Position sidebar to the right */
+  left: auto;
   width: 300px;
-  z-index: 996;
-  transition: all 0.3s;
+  height: calc(100% - 60px);
+  transition: right 0.3s ease;
   padding: 20px;
   overflow-y: auto;
-  scrollbar-width: thin;
-  scrollbar-color: #aab7cf transparent;
+  z-index: 996;
   box-shadow: 0px 0px 20px rgba(1, 41, 112, 0.1);
   background-color: #fff;
+  direction: rtl;
+}
+/* Hide sidebar when toggle-sidebar class is active */
+body.toggle-sidebar .sidebar {
+  right: -300px; /* Move sidebar out of view */
 }
 
-@media (max-width: 1199px) {
-  .sidebar {
-    left: -300px;
+/* Adjust the main content area for RTL layout */
+@media (min-width: 1200px) {
+  #main,
+  #footer {
+    margin-right: 300px; /* Space for the sidebar on the right */
+    margin-left: 0;
+    transition: margin 0.3s ease;
+
   }
+    /* Move main and footer back when sidebar is toggled */
+    body.toggle-sidebar #main,
+    body.toggle-sidebar #footer {
+      margin-right: 0;
+    }
 }
+
 .sidebar .nav-link.active {
   background-color: #007bff;
   color: #fff;
@@ -627,6 +653,7 @@ h6 {
   color: #fff;
 }
 
+/* Custom scrollbar styling */
 .sidebar::-webkit-scrollbar {
   width: 5px;
   height: 8px;
@@ -637,29 +664,18 @@ h6 {
   background-color: #aab7cf;
 }
 
-@media (min-width: 1200px) {
-
-  #main,
-  #footer {
-    margin-left: 300px;
-  }
-}
-
+/* Collapsed sidebar styles */
 @media (max-width: 1199px) {
   .toggle-sidebar .sidebar {
-    left: 0;
+    margin-right: -300px; /* Hide sidebar when collapsed */
+    transition: margin-right 0.3s;
   }
 }
 
 @media (min-width: 1200px) {
-
   .toggle-sidebar #main,
   .toggle-sidebar #footer {
-    margin-left: 0;
-  }
-
-  .toggle-sidebar .sidebar {
-    left: -300px;
+    margin-right: 0; /* Adjust content when sidebar is hidden */
   }
 }
 
@@ -693,7 +709,7 @@ h6 {
   font-size: 15px;
   font-weight: 600;
   color: #4154f1;
-  transition: 0.3;
+  transition: 0.3s;
   background: #f6f9ff;
   padding: 10px 15px;
   border-radius: 4px;
@@ -701,7 +717,7 @@ h6 {
 
 .sidebar-nav .nav-link i {
   font-size: 16px;
-  margin-right: 10px;
+  margin-left: 10px; /* Space on left for icons in RTL */
   color: #4154f1;
 }
 
@@ -724,7 +740,7 @@ h6 {
 }
 
 .sidebar-nav .nav-link .bi-chevron-down {
-  margin-right: 0;
+  margin-left: auto; /* Icon on left for expanded menus */
   transition: transform 0.2s ease-in-out;
 }
 
@@ -744,14 +760,13 @@ h6 {
   font-size: 14px;
   font-weight: 600;
   color: #012970;
-  transition: 0.3;
-  padding: 10px 0 10px 40px;
+  padding: 10px 40px 10px 0; /* Adjust padding for RTL */
   transition: 0.3s;
 }
 
 .sidebar-nav .nav-content a i {
   font-size: 6px;
-  margin-right: 8px;
+  margin-left: 8px;
   line-height: 0;
   border-radius: 50%;
 }

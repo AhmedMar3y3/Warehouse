@@ -25,54 +25,62 @@ class BillController extends Controller
 
     public function create()
     {
-        $products = Product::all();
+        $products = Product::where('quantity', '>', 0)->get(); // Fetch only products with positive quantity
         return view('bills.create', compact('products'));
     }
+    
 
     public function store(Request $request)
-    {
-        $validatedData = $request->validate([
-            'customer_name' => 'required|string',
-            'customer_phone' => 'required|string',
-            'products' => 'required|array',
-            'products.*.id' => 'required|exists:products,id',
-            'products.*.quantity' => 'required|integer|min:1',
-        ]);
+{
+    $validatedData = $request->validate([
+        'customer_name' => 'required|string',
+        'customer_phone' => 'required|string',
+        'products' => 'required|array',
+        'products.*.id' => 'required|exists:products,id',
+        'products.*.quantity' => 'required|integer|min:1',
+    ], [
+        'products.*.quantity.min' => 'يجب أن تكون الكمية على الأقل واحد لكل منتج.',  // Custom error message in Arabic
+    ]);
 
-        $products = $validatedData['products'];
-        $totalPrice = 0;
+    $products = $validatedData['products'];
+    $totalPrice = 0;
 
-        DB::beginTransaction();
+    DB::beginTransaction();
 
-        $bill = Bill::create([
-            'customer_name' => $validatedData['customer_name'],
-            'customer_phone' => $validatedData['customer_phone'],
-            'total_price' => 0,
-        ]);
+    $bill = Bill::create([
+        'customer_name' => $validatedData['customer_name'],
+        'customer_phone' => $validatedData['customer_phone'],
+        'total_price' => 0,
+    ]);
 
-        foreach ($products as $item) {
-            $product = Product::findOrFail($item['id']);
+    foreach ($products as $item) {
+        $product = Product::findOrFail($item['id']);
 
-            if ($item['quantity'] > $product->quantity) {
-                DB::rollBack();
-                return redirect()->back()->withErrors([
-                    "Not enough quantity for product: {$product->name}"
-                ]);
-            }
+        if ($item['quantity'] > $product->quantity) {
+            DB::rollBack();
+            // return redirect()->back()->withErrors([
+            //     "الكمية المتاحة غير كافية للمنتج: {$product->name}"
+            // ]);
+            return redirect()->route('bills.index')->with(
+                'error' ,"الكمية المتاحة غير كافية للمنتج: {$product->name}"
+            );
 
-            $product->decrement('quantity', $item['quantity']);
-            $itemTotal = $product->price * $item['quantity'];
-            $totalPrice += $itemTotal;
-            $bill->products()->attach($product->id, ['quantity' => $item['quantity']]);
         }
 
-        $bill->update(['total_price' => $totalPrice]);
-
-        DB::commit();
-
-        return redirect()->route('bills.index')->with('success', 'Bill created successfully');
+        $product->decrement('quantity', $item['quantity']);
+        $itemTotal = $product->price * $item['quantity'];
+        $totalPrice += $itemTotal;
+        $bill->products()->attach($product->id, ['quantity' => $item['quantity']]);
     }
 
+    $bill->update(['total_price' => $totalPrice]);
+
+    DB::commit();
+
+    return redirect()->route('bills.index')->with('success', 'تم إنشاء الفاتورة بنجاح');
+}
+
+    
     public function show($id)
     {
         $bill = Bill::with('products')->findOrFail($id);

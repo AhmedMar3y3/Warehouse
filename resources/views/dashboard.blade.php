@@ -9,10 +9,10 @@
    <div class="col-lg-4 col-md-6 col-sm-12">
     <div class="card info-card customers-card">
         <div class="card-body">
-            <h5 class="card-title">Category <span>| Total</span></h5>
+            <h5 class="card-title">الفئات <span>| الإجمالي</span></h5>
             <div class="d-flex align-items-center">
                 <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                    <i class="bi bi-person-plus"></i>
+                    <i class="bi bi-tags"></i>
                 </div>
                 <div class="ps-3">
                     <h6>{{ $categories }}</h6>
@@ -26,11 +26,10 @@
 <div class="col-lg-4 col-md-6 col-sm-12">
     <div class="card info-card customers-card">
         <div class="card-body">
-            <h5 class="card-title">Products <span>| Total</span></h5>
+            <h5 class="card-title">المنتجات <span>| الإجمالي</span></h5>
             <div class="d-flex align-items-center">
                 <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                    <i class="bi bi-heart-pulse"></i>
-                </div>
+                    <i class="bi bi-box-seam"></i>                </div>
                 <div class="ps-3">
                     <h6>{{ $products }}</h6>
                 </div>
@@ -43,10 +42,10 @@
 <div class="col-lg-4 col-md-6 col-sm-12">
     <div class="card info-card customers-card">
         <div class="card-body">
-            <h5 class="card-title">Bills <span>| Total</span></h5>
+            <h5 class="card-title">الفواتير <span>| الإجمالي</span></h5>
             <div class="d-flex align-items-center">
                 <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                    <i class="bi bi-prescription"></i>
+                    <i class="bi bi-receipt"></i>
                 </div>
                 <div class="ps-3">
                     <h6>{{ $bills }}</h6>
@@ -59,10 +58,10 @@
 <div class="col-lg-4 col-md-6 col-sm-12">
     <div class="card info-card customers-card">
         <div class="card-body">
-            <h5 class="card-title">Revenue <span>| Total</span></h5>
+            <h5 class="card-title">الإيرادات <span>| الإجمالي</span></h5>
             <div class="d-flex align-items-center">
                 <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                    <i class="bi bi-prescription"></i>
+                    <i class="bi bi-currency-dollar"></i>
                 </div>
                 <div class="ps-3">
                     <h6>{{ $revenue }}$</h6>
@@ -75,10 +74,10 @@
 <div class="col-lg-4 col-md-6 col-sm-12">
     <div class="card info-card customers-card">
         <div class="card-body">
-            <h5 class="card-title">Revenue <span>| Today</span></h5>
+            <h5 class="card-title">الإيرادات <span>| اليوم</span></h5>
             <div class="d-flex align-items-center">
                 <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                    <i class="bi bi-prescription"></i>
+                    <i class="bi bi-currency-dollar"></i>
                 </div>
                 <div class="ps-3">
                     <h6>{{ $revenueToday }}$</h6>

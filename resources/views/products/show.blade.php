@@ -2,22 +2,21 @@
 
 @section('main')
 <div class="container">
-    <h1>Product Details</h1>
+    <h1>تفاصيل المنتج</h1>
     <div class="mb-3">
-        <h4>Name:</h4> <span>{{ $product->name }}</span>
+        <h4>الاسم:</h4> <span>{{ $product->name }}</span>
     </div>
     <div class="mb-3">
-        <h4>Price:</h4> <span>{{ $product->price }}</span>
+        <h4>السعر:</h4> <span>{{ $product->price }}</span>
     </div>
     <div class="mb-3">
-        <h4>Quantity:</h4> <span>{{ $product->quantity }}</span>
+        <h4>الكمية:</h4> <span>{{ $product->quantity }}</span>
     </div>
     <div class="mb-3">
-        <h4>Description:</h4> <span>{{ $product->description }}</span>
+        <h4>الوصف:</h4> <span>{{ $product->description }}</span>
     </div>
 </div>
   
-   
-    <a href="{{ route('products.index') }}" class="btn btn-secondary">Back to List</a>
+<a href="{{ route('products.index') }}" class="btn btn-secondary">العودة إلى القائمة</a>
 </div>
 @endsection

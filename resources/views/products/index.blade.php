@@ -2,9 +2,9 @@
 
 @section('main')
 <div class="container">
-    <h1>Products</h1>
+    <h1>المنتجات</h1>
     
-    <a href="{{ route('products.create') }}" class="btn btn-primary mb-3">Add Product</a>
+    <a href="{{ route('products.create') }}" class="btn btn-primary mb-3">إضافة منتج</a>
     @if(session('success'))
         <div class="alert alert-success">
             {{ session('success') }}
@@ -13,10 +13,10 @@
     <table class="table table-striped">
         <thead>
             <tr>
-                <th>Name</th>
-                <th>Quantity</th>
-                <th>Price</th>
-                <th>Actions</th>
+                <th>الاسم</th>
+                <th>الكمية</th>
+                <th>السعر</th>
+                <th>الإجراءات</th>
             </tr>
         </thead>
         <tbody>
@@ -27,10 +27,10 @@
                     <td>{{ $product->price }}</td>
                     <td>
                         <a href="{{ route('products.show', $product->id) }}" class="btn btn-info btn-sm">
-                            <i class="fas fa-eye"></i> <!-- View icon -->
+                            <i class="fas fa-eye"></i> <!-- أيقونة العرض -->
                         </a>
                         <a href="{{ route('products.edit', $product->id) }}" class="btn btn-warning btn-sm">
-                            <i class="fas fa-edit"></i> <!-- Edit icon -->
+                            <i class="fas fa-edit"></i> <!-- أيقونة التعديل -->
                         </a>
                         <form action="{{ route('products.destroy', $product->id) }}" method="POST" style="display: inline;">
                             @csrf
