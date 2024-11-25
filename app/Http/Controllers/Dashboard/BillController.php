@@ -59,7 +59,7 @@ class BillController extends Controller
 
         if ($item['quantity'] > $product->quantity) {
             DB::rollBack();
-            return redirect()->route('bills.index')->with(
+            return redirect()->back()->with(
                 'error' ,"الكمية المتاحة غير كافية للمنتج: {$product->name}"
             );
 

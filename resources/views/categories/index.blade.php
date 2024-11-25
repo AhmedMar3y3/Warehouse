@@ -14,7 +14,7 @@
                 <a href="{{ route('categories.create') }}" class="btn btn-primary mb-3">إضافة فئة</a>
 
                 <!-- جدول لعرض جميع الفئات -->
-                <table class="table table-striped">
+                <table class="table table-bordered">
                         <thead>
                                 <tr>
                                         <th>ID</th>

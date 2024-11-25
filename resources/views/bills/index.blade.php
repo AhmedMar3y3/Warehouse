@@ -13,17 +13,11 @@
             {{ session('success') }}
         </div>
     @endif
-
-    @if ($errors->any())
+    @if (session('error'))
         <div class="alert alert-danger">
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
+            {{ session('error') }}
         </div>
     @endif
-
     <table class="table table-bordered">
         <thead>
             <tr>
@@ -35,7 +29,7 @@
             </tr>
         </thead>
         <tbody>
-            @foreach ($bills as $bill)
+            @forelse ($bills as $bill)
                 <tr>
                     <td>{{ $bill->id }}</td>
                     <td>{{ $bill->customer_name }}</td>
@@ -50,7 +44,11 @@
                         </form>
                     </td>
                 </tr>
-            @endforeach
+                @empty
+                <tr>
+                        <td colspan="5" class="text-center">لم يتم العثور على فواتير.</td>
+                </tr>
+            @endforelse
         </tbody>
     </table>
     {{ $bills->links() }}

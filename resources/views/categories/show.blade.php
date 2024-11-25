@@ -7,7 +7,7 @@
     <a href="{{ route('categories.index') }}" class="btn btn-secondary mb-3">العودة إلى الفئات</a>
 
     <!-- قائمة المنتجات في هذه الفئة -->
-    <h3>المنتجات في {{ $category->name }}</h3>
+    <h3>المنتجات التابعة لهذه الفئة</h3>
 
     @if($category->products->isEmpty())
         <p>لم يتم العثور على منتجات في هذه الفئة.</p>

@@ -10,7 +10,7 @@
             {{ session('success') }}
         </div>
     @endif
-    <table class="table table-striped">
+    <table class="table table-bordered">
         <thead>
             <tr>
                 <th>الاسم</th>
@@ -20,7 +20,7 @@
             </tr>
         </thead>
         <tbody>
-            @foreach($products as $product)
+            @forelse($products as $product)
                 <tr>
                     <td>{{ $product->name }}</td>
                     <td>{{ $product->quantity }}</td>
@@ -42,7 +42,11 @@
                     </td>
                     
                 </tr>
-            @endforeach
+                @empty
+                <tr>
+                        <td colspan="4" class="text-center">لم يتم العثور على منتجات.</td>
+                </tr>
+            @endforelse
         </tbody>
     </table>
 </div>

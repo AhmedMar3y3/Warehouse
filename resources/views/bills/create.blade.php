@@ -4,6 +4,17 @@
 <div class="container">
     <h1>إنشاء فاتورة</h1>
     <form action="{{ route('bills.store') }}" method="POST">
+        
+    @if (session('success'))
+    <div class="alert alert-success">
+        {{ session('success') }}
+    </div>
+@endif
+@if (session('error'))
+    <div class="alert alert-danger">
+        {{ session('error') }}
+    </div>
+@endif
         @csrf
         <!-- Customer Name -->
         <div class="mb-3">
