@@ -14,7 +14,7 @@ class BillController extends Controller
 {
     public function index(Request $request)
     {
-        $query = Bill::with('products');
+        $query = Bill::with('products')->where('user_id', auth()->id());
         if ($request->filled('search')) {
             $query->where('customer_name', 'LIKE', '%' . $request->search . '%');
         }
@@ -25,7 +25,7 @@ class BillController extends Controller
 
     public function create()
     {
-        $products = Product::where('quantity', '>', 0)->get(); // Fetch only products with positive quantity
+        $products = Product::where('quantity', '>', 0)->where('user_id', auth()->id())->get(); // Fetch only products with positive quantity
         return view('bills.create', compact('products'));
     }
     
@@ -51,6 +51,7 @@ class BillController extends Controller
         'customer_name' => $validatedData['customer_name'],
         'customer_phone' => $validatedData['customer_phone'],
         'total_price' => 0,
+        'user_id' => auth()->id(),
     ]);
 
     foreach ($products as $item) {
@@ -58,9 +59,6 @@ class BillController extends Controller
 
         if ($item['quantity'] > $product->quantity) {
             DB::rollBack();
-            // return redirect()->back()->withErrors([
-            //     "الكمية المتاحة غير كافية للمنتج: {$product->name}"
-            // ]);
             return redirect()->route('bills.index')->with(
                 'error' ,"الكمية المتاحة غير كافية للمنتج: {$product->name}"
             );

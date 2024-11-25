@@ -24,7 +24,7 @@ class ProductController extends Controller
 
     public function create()
     {
-        $categories = Category::all(); // Retrieve all categories
+        $categories = Category::where('user_id', auth()->id())->get(); // Retrieve all categories related to the auth user
         return view('products.create', compact('categories')); // Pass categories to the view
     }
     

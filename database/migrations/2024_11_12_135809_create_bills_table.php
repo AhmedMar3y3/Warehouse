@@ -13,13 +13,14 @@ return new class extends Migration
     {
         Schema::create('bills', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('user_id')->nullable();
+            $table->foreign('user_id')->references('id')->on('users');
             $table->string('customer_name');
             $table->string('customer_phone');
             $table->decimal('total_price', 8, 2);
             $table->timestamps();
         });
 
-        // Create a pivot table to link bills and products
         Schema::create('bill_product', function (Blueprint $table) {
             $table->id();
             $table->foreignId('bill_id')->constrained()->onDelete('cascade');
