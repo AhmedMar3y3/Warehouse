@@ -46,10 +46,9 @@ public function destroy($id)
 {
     $deleted = DB::table('categories')->where('id', $id)->delete();
     if ($deleted) {
-        return redirect()->route('categories.index')->with('success', 'Category deleted successfully.');
+        return redirect()->route('categories.index')->with('success', 'تم حذف الفئة بنجاح.');
     } else {
-        return redirect()->route('categories.index')->with('error', 'Category not found.');
+        return redirect()->route('categories.index')->with('error', 'الفئة غير موجودة.');
     }
-}
-
+    }
 }

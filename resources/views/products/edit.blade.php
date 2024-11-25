@@ -42,16 +42,6 @@
                 <div class="text-danger">{{ $message }}</div>
             @enderror
         </div>
-        
-        <!-- Notes Field -->
-        <div class="mb-3">
-            <label for="notes" class="form-label">ملاحظات</label>
-            <textarea class="form-control" id="notes" name="notes">{{ old('notes', $product->notes) }}</textarea>
-            @error('notes')
-                <div class="text-danger">{{ $message }}</div>
-            @enderror
-        </div>
-        
         <!-- Category Field -->
         <div class="mb-3">
             <label for="category_id" class="form-label">الفئة</label>

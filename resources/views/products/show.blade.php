@@ -15,6 +15,7 @@
     <div class="mb-3">
         <h4>الوصف:</h4> <span>{{ $product->description }}</span>
     </div>
+
 </div>
   
 <a href="{{ route('products.index') }}" class="btn btn-secondary">العودة إلى القائمة</a>

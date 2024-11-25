@@ -34,13 +34,6 @@
             @enderror
         </div>
         <div class="mb-3">
-            <label for="notes" class="form-label">ملاحظات</label>
-            <textarea class="form-control" id="notes" name="notes">{{ old('notes') }}</textarea>
-            @error('notes')
-                <div class="text-danger">{{ $message }}</div>
-            @enderror
-        </div>
-        <div class="mb-3">
             <label for="category_id" class="form-label">الفئة</label>
             <select name="category_id" class="form-control">
                 <option value="">اختر الفئة</option>

@@ -38,7 +38,7 @@ class ProductController extends Controller
         }
 
         $product = Product::create($validatedData);
-        return redirect()->route('products.index')->with('success', 'Product created successfully');
+        return redirect()->route('products.index')->with('success', 'تم إنشاء المنتج بنجاح');
     }
     public function edit(string $id)
     {
@@ -50,13 +50,13 @@ class ProductController extends Controller
     {
         $validatedData = $request->validated();
         $product->update($validatedData);
-        return redirect()->route('products.index')->with('success', 'Product updated successfully');
+        return redirect()->route('products.index')->with('success', 'تم تحديث المنتج بنجاح');
     }
 
     public function deleteProduct(Product $product)
     {
         $product->delete();
-        return redirect()->route('products.index')->with('success', 'Product deleted successfully');
+        return redirect()->route('products.index')->with('success', 'تم حذف المنتج بنجاح');
     }
 
 }

@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ar" dir="rtl">
 
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Pages / Login - Mandoby</title>
+  <title>نظام إدارة المخازن </title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -53,8 +53,8 @@
               <div class="card mb-3">
                 <div class="card-body">
                   <div class="pt-4 pb-2">
-                    <h5 class="card-title text-center pb-0 fs-4">Login to Your Account</h5>
-                    <p class="text-center small">Enter your email & password to login</p>
+                    <h5 class="card-title text-center pb-0 fs-4">تسجيل الدخول إلى حسابك</h5>
+                    <p class="text-center small">أدخل بريدك الإلكتروني وكلمة المرور لتسجيل الدخول</p>
                   </div>
                   @if (Session::has('success'))
                   <div class="alert alert-success">{{Session::get('success')}}</div>
@@ -66,37 +66,33 @@
                   <form class="row g-3 needs-validation" action="{{ route('auth.loginUser') }}" method="POST">
                     @csrf
                     <div class="col-12">
-                        <label for="yourEmail" class="form-label">Email</label>
+                        <label for="yourEmail" class="form-label">البريد الإلكتروني</label>
                         <div class="input-group has-validation">
                             <span class="input-group-text" id="inputGroupPrepend">@</span>
                             <input type="email" name="email" class="form-control" value="{{ old('email') }}">
-                            <div class="invalid-feedback">Please enter your email.</div>
+                            <div class="invalid-feedback">يرجى إدخال بريدك الإلكتروني.</div>
                         </div>
                         <span class="text-danger">@error('email'){{ $message }}@enderror</span>
                     </div>
                 
                     <div class="col-12">
-                        <label for="yourPassword" class="form-label">Password</label>
+                        <label for="yourPassword" class="form-label">كلمة المرور</label>
                         <input type="password" name="password" class="form-control">
-                        <div class="invalid-feedback">Please enter your password!</div>
+                        <div class="invalid-feedback">يرجى إدخال كلمة المرور!</div>
                         <span class="text-danger">@error('password'){{ $message }}@enderror</span>
                     </div>
                 
                     <div class="col-12">
-                        <button class="btn btn-primary w-100" type="submit">Login</button>
+                        <button class="btn btn-primary w-100" type="submit">تسجيل الدخول</button>
                     </div>
                     <div class="col-12">
-                      <p class="small mb-0">Don't have an account? <a href="{{ route('auth.register') }}">Create an account</a></p>
+                      <p class="small mb-0">ليس لديك حساب؟ <a href="{{ route('auth.register') }}">إنشاء حساب</a></p>
                     </div>
                 </form>
                 </div>
-
               </div>
-              <p class="small mt-3">Forgot password? <a href="{{ route('auth.forgot-password') }}">Reset here</a></p>
+              <p class="small mt-3 text-center">نسيت كلمة المرور؟ <a href="{{ route('auth.forgot-password') }}">تغيير كلمة المرور</a></p>
 
-              {{-- <div class="credits">
-                Designed by <a href="https://www.facebook.com/profile.php?id=100008229483826&mibextid=ZbWKwL">Mar3y</a>
-              </div> --}}
             </div>
           </div>
         </div>

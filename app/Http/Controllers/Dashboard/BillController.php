@@ -89,7 +89,7 @@ class BillController extends Controller
     {
         $bill = Bill::findOrFail($id);
         $bill->delete();
-        return redirect()->route('bills.index')->with('success', 'Bill deleted successfully');
+        return redirect()->route('bills.index')->with('success', 'تم حذف الفاتورة بنجاح');
     }
 
 }
