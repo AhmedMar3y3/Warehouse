@@ -11,7 +11,7 @@
                         </div>
                 @endif
                 <!-- زر لإنشاء فئة جديدة -->
-                <a href="{{ route('categories.create') }}" class="btn btn-primary mb-3">إضافة فئة</a>
+                <a href="{{ route('categories.create') }}" class="btn mb-3" style="background-color: #0e123e; color: white; transition: background-color 0.3s, color 0.3s;" onmouseover="this.style.backgroundColor='white'; this.style.color='#0e123e';" onmouseout="this.style.backgroundColor='#0e123e'; this.style.color='white';">إضافة فئة</a>
 
                 <!-- جدول لعرض جميع الفئات -->
                 <table class="table table-bordered">

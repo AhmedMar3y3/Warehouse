@@ -11,7 +11,7 @@
         <div class="card-body">
             <h5 class="card-title">الفئات <span>| الإجمالي</span></h5>
             <div class="d-flex align-items-center">
-                <div class="card-icon d-flex align-items-center justify-content-center" style="color: #4154f1;">
+                <div class="card-icon d-flex align-items-center justify-content-center">
                     <i class="bi bi-tags"></i>
                 </div>
                 <div class="ps-3">
@@ -28,7 +28,7 @@
         <div class="card-body">
             <h5 class="card-title">المنتجات <span>| الإجمالي</span></h5>
             <div class="d-flex align-items-center">
-                <div class="card-icon d-flex align-items-center justify-content-center" style="color: #4154f1;">
+                <div class="card-icon d-flex align-items-center justify-content-center">
                     <i class="bi bi-box-seam"></i>
                 </div>
                 <div class="ps-3">
@@ -45,7 +45,7 @@
         <div class="card-body">
             <h5 class="card-title">الفواتير <span>| الإجمالي</span></h5>
             <div class="d-flex align-items-center">
-                <div class="card-icon d-flex align-items-center justify-content-center" style="color: #4154f1;">
+                <div class="card-icon d-flex align-items-center justify-content-center">
                     <i class="bi bi-receipt"></i>
                 </div>
                 <div class="ps-3">
@@ -61,7 +61,7 @@
         <div class="card-body">
             <h5 class="card-title">الإيرادات <span>| الإجمالي</span></h5>
             <div class="d-flex align-items-center">
-                <div class="card-icon d-flex align-items-center justify-content-center" style="color: #4154f1;">
+                <div class="card-icon d-flex align-items-center justify-content-center">
                     <i class="bi bi-currency-dollar"></i>
                 </div>
                 <div class="ps-3">
@@ -78,7 +78,7 @@
         <div class="card-body">
             <h5 class="card-title">الإيرادات <span>| اليوم</span></h5>
             <div class="d-flex align-items-center">
-                <div class="card-icon d-flex align-items-center justify-content-center" style="color: #4154f1;">
+                <div class="card-icon d-flex align-items-center justify-content-center">
                     <i class="bi bi-currency-dollar"></i>
                 </div>
                 <div class="ps-3">
@@ -95,7 +95,7 @@
         <div class="card-body">
             <h5 class="card-title">الفواتير <span>| المتوسط</span></h5>
             <div class="d-flex align-items-center">
-                <div class="card-icon d-flex align-items-center justify-content-center" style="color: #4154f1;">
+                <div class="card-icon d-flex align-items-center justify-content-center">
                     <i class="bi bi-graph-up"></i>
                 </div>
                 <div class="ps-3">
@@ -133,7 +133,7 @@
                         markers: {
                             size: 4
                         },
-                        colors: ['#4154f1'],
+                        colors: ['#0e123e'],
                         fill: {
                             type: "gradient",
                             gradient: {

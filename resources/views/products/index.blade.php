@@ -4,7 +4,7 @@
 <div class="container">
     <h1>المنتجات</h1>
     
-    <a href="{{ route('products.create') }}" class="btn btn-primary mb-3">إضافة منتج</a>
+    <a href="{{ route('products.create') }}" class="btn btn-primary mb-3" style="background-color: #0e123e; color: white; transition: background-color 0.3s, color 0.3s;" onmouseover="this.style.backgroundColor='white'; this.style.color='#0e123e';" onmouseout="this.style.backgroundColor='#0e123e'; this.style.color='white';">إضافة منتج</a>
     @if(session('success'))
         <div class="alert alert-success">
             {{ session('success') }}
