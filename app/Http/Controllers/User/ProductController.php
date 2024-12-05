@@ -19,28 +19,41 @@ class ProductController extends Controller
     {
         $validatedData = $request->validated();
         $validatedData['user_id'] = auth()->id();
+        
+
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $imageName = time() . '-' . uniqid() . '.' . $image->getClientOriginalExtension();
+            
+            $image->move(public_path('products'), $imageName);
+    
+            $validatedData['image'] = env('APP_URL') . '/public/products/' . $imageName;
+        }
+    
+
+
         $product = Product::create($validatedData);
-        return response()->json('product created successfully', 201);
+        return response()->json('تم إنشاء المنتج بنجاح', 201);
     }
     public function updateProduct(updateProductRequest $request, Product $product)
     {
         if ($product->user_id !== auth()->id()) {
-            return response()->json('Unauthorized', 403);
+            return response()->json('غير مصرح', 403);
         }
 
         $validatedData = $request->validated();
         $product->update($validatedData);
-        return response()->json('product updated successfully', 200);
+        return response()->json('تم تحديث المنتج بنجاح', 200);
     }
 
     public function deleteProduct(Product $product)
     {
         if ($product->user_id !== auth()->id()) {
-            return response()->json('Unauthorized', 403);
+            return response()->json('غير مصرح', 403);
         }
 
         $product->delete();
-        return response()->json('product deleted successfully', 200);
+        return response()->json('تم حذف المنتج بنجاح', 200);
     }
 
     public function showProduct($id)
@@ -48,62 +61,14 @@ class ProductController extends Controller
         $product = Product::find($id);
 
         if (!$product) {
-            return response()->json('Product not found', 404);
+            return response()->json('المنتج غير موجود', 404);
         }
 
         if ($product->user_id !== auth()->id()) {
-            return response()->json('Unauthorized', 403);
+            return response()->json('غير مصرح', 403);
         }
 
         return response()->json($product, 200);
     }
-
-public function sellProduct(Request $request, Product $product)
-{
-    if ($product->user_id !== auth()->user()->id) {
-        return response()->json('Unauthorized', 403);
-    }
-
-    $quantityToSell = $request->input('quantity');
-
-    if ($quantityToSell > $product->quantity) {
-        return response()->json('Not enough quantity in stock', 400);
-    }
-
-    $product->update([
-        'quantity' => $product->quantity - $quantityToSell
-    ]);
-
-    return response()->json('product sold successfully', 200);
-}
-public function sellMultipleProducts(Request $request)
-{
-    $validatedData = $request->validate([
-        'products' => 'required|array',
-        'products.*.id' => 'required|exists:products,id',
-        'products.*.quantity' => 'required|integer|min:1',
-    ]);
-
-    $products = $validatedData['products'];
-    $userId = auth()->id();
-
-    foreach ($products as $item) {
-        $product = Product::where('id', $item['id'])->where('user_id', $userId)->first();
-
-        if (!$product) {
-            return response()->json(['error' => "Product with ID {$item['id']} not found or unauthorized."], 404);
-        }
-
-        if ($item['quantity'] > $product->quantity) {
-            return response()->json(['error' => "Not enough quantity in stock for product with ID {$item['id']}"], 400);
-        }
-
-        $product->update([
-            'quantity' => $product->quantity - $item['quantity']
-        ]);
-    }
-
-    return response()->json('Products sold successfully', 200);
 }
 
-}

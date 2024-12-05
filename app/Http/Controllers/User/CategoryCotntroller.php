@@ -21,7 +21,7 @@ public function show($id)
     if ($category) {
         return response()->json($category);
     } else {
-        return response()->json(['error' => 'Category not found'], 404);
+        return response()->json('الفئة غير موجودة', 404);
     }
 }
 
@@ -31,37 +31,21 @@ public function store(Request $request)
         'name' => 'required|string|max:255',
     ]);
 
-    $id = DB::table('categories')->insertGetId([
-        'name' => $request->name,
-    ]);
+$category = DB::table('categories')->insert([
+    'name' => $request->name,
+    'user_id' => $request->user()->id,
+]);
 
-    return response()->json(['success' => 'Category created successfully.', 'id' => $id], 201);
+    return response()->json('تم إنشاء الفئة بنجاح', 201);
 }
 
 public function destroy($id)
 {
     $deleted = DB::table('categories')->where('id', $id)->delete();
     if ($deleted) {
-        return response()->json(['success' => 'Category deleted successfully.']);
+        return response()->json( 'تم حذف الفئة بنجاح.', 200);
     } else {
-        return response()->json(['error' => 'Category not found'], 404);
-    }
-}
-
-public function update(Request $request, $id)
-{
-    $request->validate([
-        'name' => 'required|string|max:255',
-    ]);
-
-    $updated = DB::table('categories')->where('id', $id)->update([
-        'name' => $request->name,
-    ]);
-
-    if ($updated) {
-        return response()->json(['success' => 'Category updated successfully.']);
-    } else {
-        return response()->json(['error' => 'Category not found'], 404);
+        return response()->json( 'الفئة غير موجودة' ,404);
     }
 }
 }

@@ -28,6 +28,7 @@ class storeProductRequest extends FormRequest
             'quantity' => 'required|numeric',
             'notes' => 'nullable|string',
             'category_id' => 'required|exists:categories,id',
+            'image' => 'nullable|image|mimes:png,jpg,jpeg|max:2048',
 
         ];
     }
